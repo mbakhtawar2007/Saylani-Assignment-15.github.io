@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculator</title>
+
+  <style>
+    body {
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial;
+    }
+
+    .box {
+      background: white;
+      padding: 20px;
+      width: 260px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px gray;
+    }
+
+    input {
+      width: 100%;
+      height: 50px;
+      font-size: 22px;
+      text-align: right;
+      margin-bottom: 10px;
+      padding-right: 10px;
+      background: #eee;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .btns {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    button {
+      height: 45px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background: #ddd;
+    }
+
+    .op {
+      background: orange;
+    }
+
+    .equal {
+      background: green;
+      color: white;
+      grid-column: span 2;
+    }
+
+    .clear {
+      background: red;
+      color: white;
+    }
+
+    .del {
+      background: #607d8b;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="box">
+    <!-- Display -->
+    <input type="text" id="screen" readonly>
+
+    <!-- Buttons -->
+    <div class="btns">
+      <button class="clear" onclick="clearScreen()">C</button>
+      <button class="del" onclick="deleteOne()">DEL</button>
+      <button class="op" onclick="add('/')">/</button>
+      <button class="op" onclick="add('*')">*</button>
+
+      <button onclick="add('7')">7</button>
+      <button onclick="add('8')">8</button>
+      <button onclick="add('9')">9</button>
+      <button class="op" onclick="add('-')">-</button>
+
+      <button onclick="add('4')">4</button>
+      <button onclick="add('5')">5</button>
+      <button onclick="add('6')">6</button>
+      <button class="op" onclick="add('+')">+</button>
+
+      <button onclick="add('1')">1</button>
+      <button onclick="add('2')">2</button>
+      <button onclick="add('3')">3</button>
+
+      <button onclick="add('0')">0</button>
+      <button onclick="add('.')">.</button>
+      <button class="equal" onclick="result()">=</button>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    let screen = document.getElementById("screen");
+
+    // add value to screen
+    function add(value) {
+      screen.value += value;
+    }
+
+    // clear screen
+    function clearScreen() {
+      screen.value = "";
+    }
+
+    // delete last character
+    function deleteOne() {
+      screen.value = screen.value.slice(0, -1);
+    }
+
+    // calculate result
+    function result() {
+      try {
+        screen.value = eval(screen.value);
+      } catch {
+        screen.value = "Error";
+      }
+    }
+  </script>
+
+</body>
+</html>
